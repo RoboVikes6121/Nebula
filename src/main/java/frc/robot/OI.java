@@ -12,6 +12,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.RocketLvl1Cargo;
 import frc.robot.commands.RocketLvl2Cargo;
 import frc.robot.commands.RocketLvl3Cargo;
+import frc.robot.commands.RocketLvl1Hatch;
+import frc.robot.commands.RocketLvl2Hatch;
+import frc.robot.commands.RocketLvl3Hatch;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -49,23 +52,35 @@ public class OI {
   public static Joystick driverJoystick;
   public static Joystick operatorJoystick;
 
-  public static JoystickButton rl1Button;
-  public static JoystickButton rl2Button;
-  public static JoystickButton rl3Button;
+  public static JoystickButton crl1Button;
+  public static JoystickButton crl2Button;
+  public static JoystickButton crl3Button;
+  public static JoystickButton hrl1Button;
+  public static JoystickButton hrl2Button;
+  public static JoystickButton hrl3Button;
 
   public OI() {
 
     driverJoystick = new Joystick(0);
     operatorJoystick = new Joystick(1);
 
-    rl1Button = new JoystickButton(operatorJoystick, 10);
-    rl1Button.whenPressed(new RocketLvl1Cargo());
+    crl1Button = new JoystickButton(operatorJoystick, 10);
+    crl1Button.whenPressed(new RocketLvl1Cargo());
 
-    rl2Button = new JoystickButton(operatorJoystick, 9);
-    rl2Button.whenPressed(new RocketLvl2Cargo());
+    crl2Button = new JoystickButton(operatorJoystick, 9);
+    crl2Button.whenPressed(new RocketLvl2Cargo());
 
-    rl3Button = new JoystickButton(operatorJoystick, 8);
-    rl3Button.whenPressed(new RocketLvl3Cargo());
+    crl3Button = new JoystickButton(operatorJoystick, 8);
+    crl3Button.whenPressed(new RocketLvl3Cargo());
+
+    hrl1Button = new JoystickButton(operatorJoystick, 16);
+    hrl1Button.whenPressed(new RocketLvl1Hatch());
+
+    hrl2Button = new JoystickButton(operatorJoystick, 15);
+    hrl2Button.whenPressed(new RocketLvl2Hatch());
+
+    hrl3Button = new JoystickButton(operatorJoystick, 14);
+    hrl3Button.whenPressed(new RocketLvl3Hatch());
 
   }
 }

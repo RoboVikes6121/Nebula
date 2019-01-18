@@ -40,4 +40,12 @@ public class GamePieceSubsystem extends Subsystem {
     RobotMap.intakeMotor1.set(s);
     RobotMap.intakeMotor2.set(-s);
   }
+
+  public void hatchEjection() {
+    RobotMap.hatchSolenoid1.set(true);
+  }
+
+  public void hatchSolenoidStop() {
+    RobotMap.hatchSolenoid1.set(false);
+  }
 }

@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Solenoid;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -35,6 +36,10 @@ public class RobotMap {
   public static Victor intakeMotor2;
   public static Victor climbMotor;
 
+  public static Solenoid hatchSolenoid1;
+  public static Solenoid hatchSolenoid2;
+  public static Solenoid hatchSolenoid3;
+
   public static void init() {
 
     WPI_TalonSRX leftMotor = new WPI_TalonSRX(1);
@@ -52,6 +57,10 @@ public class RobotMap {
     intakeMotor1 = new Victor(5);
     intakeMotor2 = new Victor(6);
     climbMotor = new Victor(7);
+
+    hatchSolenoid1 = new Solenoid(0);
+    hatchSolenoid2 = new Solenoid(1);
+    hatchSolenoid3 = new Solenoid(2);
 
   }
 }
