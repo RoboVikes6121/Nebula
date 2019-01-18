@@ -33,6 +33,7 @@ public class RobotMap {
   public static Victor elevatorMotor;
   public static Victor intakeMotor1;
   public static Victor intakeMotor2;
+  public static Victor climbMotor;
 
   public static void init() {
 
@@ -50,6 +51,7 @@ public class RobotMap {
     elevatorMotor = new Victor(4);
     intakeMotor1 = new Victor(5);
     intakeMotor2 = new Victor(6);
+    climbMotor = new Victor(7);
 
   }
 }

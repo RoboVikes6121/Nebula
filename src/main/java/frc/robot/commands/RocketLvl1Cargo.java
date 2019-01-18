@@ -9,11 +9,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class RocketLvl2Cargo extends CommandGroup {
+public class RocketLvl1Cargo extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public RocketLvl2Cargo() {
+  public RocketLvl1Cargo() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -30,7 +30,5 @@ public class RocketLvl2Cargo extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-
-    addSequential(new ElevatorDown(.5, 5.5));
   }
 }

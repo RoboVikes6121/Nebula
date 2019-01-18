@@ -9,7 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.RocketLvl1Cargo;
 import frc.robot.commands.RocketLvl2Cargo;
+import frc.robot.commands.RocketLvl3Cargo;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -47,16 +49,23 @@ public class OI {
   public static Joystick driverJoystick;
   public static Joystick operatorJoystick;
 
+  public static JoystickButton rl1Button;
   public static JoystickButton rl2Button;
-  public static JoystickButton rl21Button;
+  public static JoystickButton rl3Button;
 
   public OI() {
 
     driverJoystick = new Joystick(0);
     operatorJoystick = new Joystick(1);
 
-    rl2Button = new JoystickButton(operatorJoystick, 10);
+    rl1Button = new JoystickButton(operatorJoystick, 10);
+    rl1Button.whenPressed(new RocketLvl1Cargo());
+
+    rl2Button = new JoystickButton(operatorJoystick, 9);
     rl2Button.whenPressed(new RocketLvl2Cargo());
+
+    rl3Button = new JoystickButton(operatorJoystick, 8);
+    rl3Button.whenPressed(new RocketLvl3Cargo());
 
   }
 }
