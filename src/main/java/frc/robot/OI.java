@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.RocketLvl2Cargo;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -45,10 +47,16 @@ public class OI {
   public static Joystick driverJoystick;
   public static Joystick operatorJoystick;
 
+  public static JoystickButton rl2Button;
+  public static JoystickButton rl21Button;
+
   public OI() {
 
     driverJoystick = new Joystick(0);
     operatorJoystick = new Joystick(1);
+
+    rl2Button = new JoystickButton(operatorJoystick, 10);
+    rl2Button.whenPressed(new RocketLvl2Cargo());
 
   }
 }

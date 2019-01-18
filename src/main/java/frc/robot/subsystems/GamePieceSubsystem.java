@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -20,5 +21,23 @@ public class GamePieceSubsystem extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  public void raiseElevator(double s) {
+    RobotMap.elevatorMotor.set(s);
+  }
+
+  public void lowerElevator(double s) {
+    RobotMap.elevatorMotor.set(s);
+  }
+
+  public void cargoIntake(double s) {
+    RobotMap.intakeMotor1.set(s);
+    RobotMap.intakeMotor2.set(-s);
+  }
+
+  public void placeCargo(double s) {
+    RobotMap.intakeMotor1.set(s);
+    RobotMap.intakeMotor2.set(-s);
   }
 }
