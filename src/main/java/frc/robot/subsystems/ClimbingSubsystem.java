@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -22,7 +23,7 @@ public class ClimbingSubsystem extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void climb() {
-    
+  public void climb(double s) {
+    RobotMap.climbMotor.set(s);
   }
 }

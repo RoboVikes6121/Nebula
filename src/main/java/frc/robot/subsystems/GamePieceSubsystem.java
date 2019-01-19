@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
  * Add your docs here.
@@ -23,20 +24,11 @@ public class GamePieceSubsystem extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void raiseElevator(double s) {
-    RobotMap.elevatorMotor.set(s);
-  }
-
-  public void lowerElevator(double s) {
+  public void elevator(double s) {
     RobotMap.elevatorMotor.set(s);
   }
 
   public void cargoIntake(double s) {
-    RobotMap.intakeMotor1.set(s);
-    RobotMap.intakeMotor2.set(-s);
-  }
-
-  public void placeCargo(double s) {
     RobotMap.intakeMotor1.set(s);
     RobotMap.intakeMotor2.set(-s);
   }
@@ -47,5 +39,32 @@ public class GamePieceSubsystem extends Subsystem {
 
   public void hatchSolenoidStop() {
     RobotMap.hatchSolenoid1.set(false);
+  }
+
+  public void deployArms() {
+    RobotMap.armSolenoid1.set(DoubleSolenoid.Value.kForward);
+    RobotMap.armSolenoid2.set(DoubleSolenoid.Value.kForward);
+  }
+
+  public void retractArms() {
+    RobotMap.armSolenoid1.set(DoubleSolenoid.Value.kReverse);
+    RobotMap.armSolenoid2.set(DoubleSolenoid.Value.kReverse);
+  }
+
+  public void armSolenoidsOff() {
+    RobotMap.armSolenoid1.set(DoubleSolenoid.Value.kOff);
+    RobotMap.armSolenoid2.set(DoubleSolenoid.Value.kOff);
+  }
+
+  public void pickUpHatch() {
+    RobotMap.rotateSolenoid.set(DoubleSolenoid.Value.kForward);
+  }
+
+  public void bringArmsUp() {
+    RobotMap.rotateSolenoid.set(DoubleSolenoid.Value.kReverse);
+  }
+
+  public void rotateSolenoidOff() {
+    RobotMap.rotateSolenoid.set(DoubleSolenoid.Value.kOff);
   }
 }

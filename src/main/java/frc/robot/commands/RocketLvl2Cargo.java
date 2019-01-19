@@ -31,6 +31,6 @@ public class RocketLvl2Cargo extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    addSequential(new ElevatorDown(.5, 5.5));
+    addSequential(new MoveElevator(.5, 5.5));
   }
 }

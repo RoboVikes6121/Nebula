@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -39,6 +40,9 @@ public class RobotMap {
   public static Solenoid hatchSolenoid1;
   public static Solenoid hatchSolenoid2;
   public static Solenoid hatchSolenoid3;
+  public static DoubleSolenoid armSolenoid1;
+  public static DoubleSolenoid armSolenoid2;
+  public static DoubleSolenoid rotateSolenoid;
 
   public static void init() {
 
@@ -61,6 +65,9 @@ public class RobotMap {
     hatchSolenoid1 = new Solenoid(0);
     hatchSolenoid2 = new Solenoid(1);
     hatchSolenoid3 = new Solenoid(2);
+    armSolenoid1 = new DoubleSolenoid(3, 4);
+    armSolenoid2 = new DoubleSolenoid(5, 6);
+    rotateSolenoid = new DoubleSolenoid(7, 8);
 
   }
 }

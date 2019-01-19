@@ -10,13 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ClimbLvl2 extends Command {
+public class CargoIntakeT extends Command {
   static double speed;
-  public ClimbLvl2(double s) {
+  public CargoIntakeT(double s) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.climbSubsystem);
-    speed = s;
+    requires(Robot.gpSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +26,7 @@ public class ClimbLvl2 extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climbSubsystem.climb(speed);
+    Robot.gpSubsystem.cargoIntake(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -39,7 +38,7 @@ public class ClimbLvl2 extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climbSubsystem.climb(0);
+    Robot.gpSubsystem.cargoIntake(0);
   }
 
   // Called when another command which requires one or more of the same
