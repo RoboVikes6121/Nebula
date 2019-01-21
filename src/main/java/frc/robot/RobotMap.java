@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -44,6 +45,8 @@ public class RobotMap {
   public static DoubleSolenoid armSolenoid2;
   public static DoubleSolenoid rotateSolenoid;
 
+  public static DigitalInput limitSwitch;
+
   public static void init() {
 
     WPI_TalonSRX leftMotor = new WPI_TalonSRX(1);
@@ -58,19 +61,18 @@ public class RobotMap {
     rightSlave.follow(rightMotor);
 
     elevatorMotor = new WPI_VictorSPX(6);
-    WPI_VictorSPX inMotor1 = new WPI_VictorSPX(4);
-    WPI_VictorSPX inMotor2 = new WPI_VictorSPX(5);
+    intakeMotor1 = new WPI_VictorSPX(4);
+    intakeMotor2 = new WPI_VictorSPX(5);
     climbMotor = new WPI_VictorSPX(7);
 
-    intakeMotor1 = inMotor1;
-    intakeMotor2 = inMotor2;
-/*
     hatchSolenoid1 = new Solenoid(0);
     hatchSolenoid2 = new Solenoid(1);
     hatchSolenoid3 = new Solenoid(2);
     armSolenoid1 = new DoubleSolenoid(3, 4);
     armSolenoid2 = new DoubleSolenoid(5, 6);
     rotateSolenoid = new DoubleSolenoid(7, 8);
-*/
+
+    limitSwitch = new DigitalInput(0);
+
   }
 }
