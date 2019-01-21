@@ -20,6 +20,8 @@ import frc.robot.commands.GrabHatchFloor;
 import frc.robot.commands.ArmsUp;
 import frc.robot.commands.ArmsIn;
 import frc.robot.commands.ArmsOut;
+import frc.robot.commands.EjectHatch;
+import frc.robot.commands.MoveElevatorT;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -69,11 +71,44 @@ public class OI {
   public static JoystickButton armsUpButton;
   public static JoystickButton deployArmsButton;
   public static JoystickButton retractArmsButton;
+  public static JoystickButton shootHatchButton;
+  public static JoystickButton operatorStopButton;
+  public static JoystickButton elevatorUpButton;
+  public static JoystickButton elevatorDownButton;
 
   public OI() {
 
     driverJoystick = new Joystick(0);
     operatorJoystick = new Joystick(1);
+
+    shootHatchButton = new JoystickButton(operatorJoystick, 1);
+    shootHatchButton.whenPressed(new EjectHatch());
+
+    operatorStopButton = new JoystickButton(operatorJoystick, 2);
+
+    elevatorUpButton = new JoystickButton(operatorJoystick, 3);
+    elevatorUpButton.whileHeld(new MoveElevatorT(.5));
+   
+    elevatorDownButton = new JoystickButton(operatorJoystick, 4);
+    elevatorDownButton.whileHeld(new MoveElevatorT(-.5));
+
+    retractArmsButton = new JoystickButton(operatorJoystick, 5);
+    retractArmsButton.whenPressed(new ArmsIn());
+
+    armsUpButton = new JoystickButton(operatorJoystick, 6);
+    armsUpButton.whenPressed(new ArmsUp());
+
+    shootCargoButton = new JoystickButton(operatorJoystick, 7);
+    shootCargoButton.whileHeld(new CargoIntakeT(-.5));
+
+    grabCargoButton = new JoystickButton(operatorJoystick, 8);
+    grabCargoButton.whileHeld(new CargoIntakeT(.5));
+
+    grabHatchFloorButton = new JoystickButton(operatorJoystick, 9);
+    grabHatchFloorButton.whenPressed(new GrabHatchFloor());
+
+    deployArmsButton = new JoystickButton(operatorJoystick, 10);
+    deployArmsButton.whenPressed(new ArmsOut());
 
     crl1Button = new JoystickButton(operatorJoystick, 11);
     crl1Button.whenPressed(new RocketLvl1Cargo());
@@ -84,32 +119,14 @@ public class OI {
     crl3Button = new JoystickButton(operatorJoystick, 13);
     crl3Button.whenPressed(new RocketLvl3Cargo());
 
-    hrl1Button = new JoystickButton(operatorJoystick, 16);
-    hrl1Button.whenPressed(new RocketLvl1Hatch());
+    hrl3Button = new JoystickButton(operatorJoystick, 14);
+    hrl3Button.whenPressed(new RocketLvl3Hatch());
 
     hrl2Button = new JoystickButton(operatorJoystick, 15);
     hrl2Button.whenPressed(new RocketLvl2Hatch());
 
-    hrl3Button = new JoystickButton(operatorJoystick, 14);
-    hrl3Button.whenPressed(new RocketLvl3Hatch());
-
-    grabCargoButton = new JoystickButton(operatorJoystick, 8);
-    grabCargoButton.whileHeld(new CargoIntakeT(.5));
-
-    shootCargoButton = new JoystickButton(operatorJoystick, 7);
-    shootCargoButton.whileHeld(new CargoIntakeT(-.5));
-
-    grabHatchFloorButton = new JoystickButton(operatorJoystick, 9);
-    grabHatchFloorButton.whenPressed(new GrabHatchFloor());
-
-    armsUpButton = new JoystickButton(operatorJoystick, 6);
-    armsUpButton.whenPressed(new ArmsUp());
-
-    deployArmsButton = new JoystickButton(operatorJoystick, 10);
-    deployArmsButton.whenPressed(new ArmsOut());
-
-    retractArmsButton = new JoystickButton(operatorJoystick, 5);
-    retractArmsButton.whenPressed(new ArmsIn());
+    hrl1Button = new JoystickButton(operatorJoystick, 16);
+    hrl1Button.whenPressed(new RocketLvl1Hatch());
 
   }
 }

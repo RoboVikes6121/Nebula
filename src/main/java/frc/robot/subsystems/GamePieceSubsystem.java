@@ -66,5 +66,5 @@ public class GamePieceSubsystem extends Subsystem {
 
   public void rotateSolenoidOff() {
     RobotMap.rotateSolenoid.set(DoubleSolenoid.Value.kOff);
-  }
+  } 
 }

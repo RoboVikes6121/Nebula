@@ -10,39 +10,36 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class MoveElevator extends Command {
+public class Climb extends Command {
   static double speed;
-  static double time;
-  public MoveElevator(double s, double t) {
+  public Climb(double s) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.gpSubsystem);
+    requires(Robot.climbSubsystem);
     speed = s;
-    time = t;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setTimeout(time);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.gpSubsystem.elevator(speed);
+    Robot.climbSubsystem.climb(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.gpSubsystem.elevator(0);
+    Robot.climbSubsystem.climb(0);
   }
 
   // Called when another command which requires one or more of the same

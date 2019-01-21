@@ -38,6 +38,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    gpSubsystem = new GamePieceSubsystem();
     RobotMap.init();
     oi = new OI();
     driveSubsystem = new DriveSubsystem();

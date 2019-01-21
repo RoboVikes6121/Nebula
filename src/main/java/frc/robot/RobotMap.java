@@ -9,7 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.Victor;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
@@ -32,10 +32,10 @@ public class RobotMap {
 
   public static DifferentialDrive driveTrain;
 
-  public static Victor elevatorMotor;
-  public static Victor intakeMotor1;
-  public static Victor intakeMotor2;
-  public static Victor climbMotor;
+  public static WPI_VictorSPX elevatorMotor;
+  public static WPI_VictorSPX intakeMotor1;
+  public static WPI_VictorSPX intakeMotor2;
+  public static WPI_VictorSPX climbMotor;
 
   public static Solenoid hatchSolenoid1;
   public static Solenoid hatchSolenoid2;
@@ -57,17 +57,20 @@ public class RobotMap {
     leftSlave.follow(leftMotor);
     rightSlave.follow(rightMotor);
 
-    elevatorMotor = new Victor(4);
-    intakeMotor1 = new Victor(5);
-    intakeMotor2 = new Victor(6);
-    climbMotor = new Victor(7);
+    elevatorMotor = new WPI_VictorSPX(6);
+    WPI_VictorSPX inMotor1 = new WPI_VictorSPX(4);
+    WPI_VictorSPX inMotor2 = new WPI_VictorSPX(5);
+    climbMotor = new WPI_VictorSPX(7);
 
+    intakeMotor1 = inMotor1;
+    intakeMotor2 = inMotor2;
+/*
     hatchSolenoid1 = new Solenoid(0);
     hatchSolenoid2 = new Solenoid(1);
     hatchSolenoid3 = new Solenoid(2);
     armSolenoid1 = new DoubleSolenoid(3, 4);
     armSolenoid2 = new DoubleSolenoid(5, 6);
     rotateSolenoid = new DoubleSolenoid(7, 8);
-
+*/
   }
 }
