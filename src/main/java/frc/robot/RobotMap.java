@@ -34,9 +34,10 @@ public class RobotMap {
   public static DifferentialDrive driveTrain;
 
   public static WPI_VictorSPX elevatorMotor;
+  public static WPI_VictorSPX climbMotor;
   public static WPI_VictorSPX intakeMotor1;
   public static WPI_VictorSPX intakeMotor2;
-  public static WPI_VictorSPX climbMotor;
+  public static WPI_VictorSPX rotateMotor;
 
   public static Solenoid hatchSolenoid1;
   public static Solenoid hatchSolenoid2;
@@ -60,18 +61,18 @@ public class RobotMap {
     leftSlave.follow(leftMotor);
     rightSlave.follow(rightMotor);
 
-    elevatorMotor = new WPI_VictorSPX(6);
     intakeMotor1 = new WPI_VictorSPX(4);
     intakeMotor2 = new WPI_VictorSPX(5);
+    elevatorMotor = new WPI_VictorSPX(6);
     climbMotor = new WPI_VictorSPX(7);
-
+    rotateMotor = new WPI_VictorSPX(8);
+/*
     hatchSolenoid1 = new Solenoid(0);
     hatchSolenoid2 = new Solenoid(1);
     hatchSolenoid3 = new Solenoid(2);
     armSolenoid1 = new DoubleSolenoid(3, 4);
     armSolenoid2 = new DoubleSolenoid(5, 6);
-    rotateSolenoid = new DoubleSolenoid(7, 8);
-
+*/
     limitSwitch = new DigitalInput(0);
 
   }

@@ -11,12 +11,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Climb extends Command {
-  static double speed;
-  public Climb(double s) {
+  public Climb() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.climbSubsystem);
-    speed = s;
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +25,7 @@ public class Climb extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climbSubsystem.climb(speed);
+    Robot.climbSubsystem.climb();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -39,7 +37,7 @@ public class Climb extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climbSubsystem.climb(0);
+    Robot.climbSubsystem.climbMotorOff();
   }
 
   // Called when another command which requires one or more of the same

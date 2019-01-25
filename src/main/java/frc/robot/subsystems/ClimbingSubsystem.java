@@ -23,7 +23,11 @@ public class ClimbingSubsystem extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void climb(double s) {
-    RobotMap.climbMotor.set(s);
+  public void climb() {
+    RobotMap.climbMotor.set(.5);
+  }
+
+  public void climbMotorOff() {
+    RobotMap.climbMotor.set(0);
   }
 }

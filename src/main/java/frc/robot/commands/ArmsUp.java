@@ -37,7 +37,7 @@ public class ArmsUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.gpSubsystem.rotateSolenoidOff();
+    Robot.gpSubsystem.rotateMotorOff();
   }
 
   // Called when another command which requires one or more of the same
