@@ -9,8 +9,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-//import edu.wpi.first.wpilibj.DoubleSolenoid;
-//import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
  * Add your docs here.
@@ -63,18 +61,13 @@ public class GamePieceSubsystem extends Subsystem {
   public void rotateMotorOff() {
     RobotMap.rotateMotor.set(0);
   }
-/*
+
   public void hatchEjection() {
-    RobotMap.hatchSolenoid1.set(true);
+    RobotMap.hatchSolenoid.set(true);
   }
 
   public void hatchSolenoidStop() {
-    RobotMap.hatchSolenoid1.set(false);
+    RobotMap.hatchSolenoid.set(false);
   }
 
-  public void armSolenoidsOff() {
-    RobotMap.armSolenoid1.set(DoubleSolenoid.Value.kOff);
-    RobotMap.armSolenoid2.set(DoubleSolenoid.Value.kOff);
-  }
- */
 }

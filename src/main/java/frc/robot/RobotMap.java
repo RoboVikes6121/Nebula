@@ -11,8 +11,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Victor;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -35,18 +34,11 @@ public class RobotMap {
 
   public static WPI_VictorSPX elevatorMotor;
   public static WPI_VictorSPX climbMotor;
-  public static WPI_VictorSPX intakeMotor1;
-  public static WPI_VictorSPX intakeMotor2;
-  public static WPI_VictorSPX rotateMotor;
+  public static Victor intakeMotor1;
+  public static Victor intakeMotor2;
+  public static WPI_TalonSRX rotateMotor;
 
-  public static Solenoid hatchSolenoid1;
-  public static Solenoid hatchSolenoid2;
-  public static Solenoid hatchSolenoid3;
-  public static DoubleSolenoid armSolenoid1;
-  public static DoubleSolenoid armSolenoid2;
-  public static DoubleSolenoid rotateSolenoid;
-
-  public static DigitalInput limitSwitch;
+  public static Solenoid hatchSolenoid;
 
   public static void init() {
 
@@ -58,22 +50,18 @@ public class RobotMap {
 
     driveTrain = new DifferentialDrive(leftMotor, rightMotor);
 
+    driveTrain.setExpiration(.1);
+
     leftSlave.follow(leftMotor);
     rightSlave.follow(rightMotor);
 
-    intakeMotor1 = new WPI_VictorSPX(4);
-    intakeMotor2 = new WPI_VictorSPX(5);
+    intakeMotor1 = new Victor(7);
+    intakeMotor2 = new Victor(8);
     elevatorMotor = new WPI_VictorSPX(6);
-    climbMotor = new WPI_VictorSPX(7);
-    rotateMotor = new WPI_VictorSPX(8);
-/*
-    hatchSolenoid1 = new Solenoid(0);
-    hatchSolenoid2 = new Solenoid(1);
-    hatchSolenoid3 = new Solenoid(2);
-    armSolenoid1 = new DoubleSolenoid(3, 4);
-    armSolenoid2 = new DoubleSolenoid(5, 6);
-*/
-    limitSwitch = new DigitalInput(0);
+    climbMotor = new WPI_VictorSPX(4);
+    rotateMotor = new WPI_TalonSRX(5);
+
+    hatchSolenoid = new Solenoid(0);
 
   }
 }

@@ -18,6 +18,7 @@ import frc.robot.RobotMap;
 public class DriveSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  double rotateToAngleRate;
 
   @Override
   public void initDefaultCommand() {
@@ -31,4 +32,5 @@ public class DriveSubsystem extends Subsystem {
     double turn = stick.getRawAxis(4);
     RobotMap.driveTrain.arcadeDrive(turn, move);
   }
+
 }
