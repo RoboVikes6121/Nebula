@@ -33,12 +33,13 @@ public class RobotMap {
   public static DifferentialDrive driveTrain;
 
   public static WPI_VictorSPX elevatorMotor;
-  public static WPI_VictorSPX climbMotor;
   public static Victor intakeMotor1;
   public static Victor intakeMotor2;
   public static WPI_TalonSRX rotateMotor;
 
-  public static Solenoid hatchSolenoid;
+ // public static Solenoid hatchSolenoid;
+ // public static Solenoid frontClimbSolenoid;
+ // public static Solenoid rearClimbSolenoid;
 
   public static void init() {
 
@@ -50,18 +51,17 @@ public class RobotMap {
 
     driveTrain = new DifferentialDrive(leftMotor, rightMotor);
 
-    driveTrain.setExpiration(.1);
-
     leftSlave.follow(leftMotor);
     rightSlave.follow(rightMotor);
 
     intakeMotor1 = new Victor(7);
     intakeMotor2 = new Victor(8);
-    elevatorMotor = new WPI_VictorSPX(6);
-    climbMotor = new WPI_VictorSPX(4);
-    rotateMotor = new WPI_TalonSRX(5);
+    elevatorMotor = new WPI_VictorSPX(5);
+    rotateMotor = new WPI_TalonSRX(6);
 
-    hatchSolenoid = new Solenoid(0);
+   // hatchSolenoid = new Solenoid(0);
+   // frontClimbSolenoid = new Solenoid(1);
+   // rearClimbSolenoid = new Solenoid(2);
 
   }
 }

@@ -22,12 +22,20 @@ public class ClimbingSubsystem extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-
-  public void climb() {
-    RobotMap.climbMotor.set(.5);
+/*
+  public void frontClimbSolenoidOn() {
+    RobotMap.frontClimbSolenoid.set(true);
   }
 
-  public void climbMotorOff() {
-    RobotMap.climbMotor.set(0);
+  public void rearClimbSolenoidOn() {
+    RobotMap.rearClimbSolenoid.set(true);
   }
+
+  public void frontClimbSolenoidOff() {
+    RobotMap.frontClimbSolenoid.set(true);
+  }
+
+  public void rearClimbSolenoidOff() {
+    RobotMap.rearClimbSolenoid.set(false);
+  }*/
 }

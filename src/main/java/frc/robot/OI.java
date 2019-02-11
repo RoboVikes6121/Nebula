@@ -22,7 +22,8 @@ import frc.robot.commands.ArmsUp;
 import frc.robot.commands.EjectHatch;
 import frc.robot.commands.RaiseElevatorT;
 import frc.robot.commands.LowerElevatorT;
-import frc.robot.commands.Climb;
+import frc.robot.commands.FrontClimb;
+import frc.robot.commands.RearClimb;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -77,7 +78,8 @@ public class OI {
   public static JoystickButton elevatorUpButton;
   public static JoystickButton elevatorDownButton;
   public static JoystickButton driverStopButton;
-  public static JoystickButton climbButton;
+  public static JoystickButton frontClimbButton;
+  public static JoystickButton rearClimbButton;
 
   public OI() {
 
@@ -127,8 +129,11 @@ public class OI {
 
     driverStopButton = new JoystickButton(driverJoystick, 2);
 
-    climbButton = new JoystickButton(driverJoystick, 5);
-    climbButton.whileHeld(new Climb());
+    frontClimbButton = new JoystickButton(driverJoystick, 5);
+    frontClimbButton.toggleWhenPressed(new FrontClimb());
+
+    rearClimbButton = new JoystickButton(driverJoystick, 6);
+    rearClimbButton.toggleWhenPressed(new RearClimb());
 
   }
 }

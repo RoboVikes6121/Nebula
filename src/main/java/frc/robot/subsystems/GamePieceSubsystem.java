@@ -24,11 +24,11 @@ public class GamePieceSubsystem extends Subsystem {
   }
 
   public void elevatorUp() {
-    RobotMap.elevatorMotor.set(.5);
+    RobotMap.elevatorMotor.set(.6);
   }
 
   public void elevatorDown() {
-    RobotMap.elevatorMotor.set(-.5);
+    RobotMap.elevatorMotor.set(-.6);
   }
 
   public void elevatorOff() {
@@ -51,17 +51,17 @@ public class GamePieceSubsystem extends Subsystem {
   }
 
   public void pickUpHatch() {
-    RobotMap.rotateMotor.set(.5);
+    RobotMap.rotateMotor.set(1);
   }
 
   public void bringArmsUp() {
-    RobotMap.rotateMotor.set(-.5);
+    RobotMap.rotateMotor.set(-1);
   }
 
   public void rotateMotorOff() {
     RobotMap.rotateMotor.set(0);
   }
-
+/*
   public void hatchEjection() {
     RobotMap.hatchSolenoid.set(true);
   }
@@ -69,5 +69,5 @@ public class GamePieceSubsystem extends Subsystem {
   public void hatchSolenoidStop() {
     RobotMap.hatchSolenoid.set(false);
   }
-
+*/
 }
