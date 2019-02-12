@@ -37,9 +37,9 @@ public class RobotMap {
   public static Victor intakeMotor2;
   public static WPI_TalonSRX rotateMotor;
 
- // public static Solenoid hatchSolenoid;
- // public static Solenoid frontClimbSolenoid;
- // public static Solenoid rearClimbSolenoid;
+  public static Solenoid hatchSolenoid;
+  public static Solenoid frontClimbSolenoid;
+  public static Solenoid rearClimbSolenoid;
 
   public static void init() {
 
@@ -59,9 +59,9 @@ public class RobotMap {
     elevatorMotor = new WPI_VictorSPX(5);
     rotateMotor = new WPI_TalonSRX(6);
 
-   // hatchSolenoid = new Solenoid(0);
-   // frontClimbSolenoid = new Solenoid(1);
-   // rearClimbSolenoid = new Solenoid(2);
+    hatchSolenoid = new Solenoid(0);
+    frontClimbSolenoid = new Solenoid(1);
+    rearClimbSolenoid = new Solenoid(2);
 
   }
 }

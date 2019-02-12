@@ -18,6 +18,8 @@ import frc.robot.subsystems.ClimbingSubsystem;
 import edu.wpi.first.vision.VisionThread;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import org.opencv.core.Rect;
+import org.opencv.imgproc.Imgproc;
 
 /**
  * The VM is configured to automatically run this class, and to call the

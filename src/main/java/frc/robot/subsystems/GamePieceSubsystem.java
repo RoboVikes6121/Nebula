@@ -51,11 +51,11 @@ public class GamePieceSubsystem extends Subsystem {
   }
 
   public void pickUpHatch() {
-    RobotMap.rotateMotor.set(1);
+    RobotMap.rotateMotor.set(.5);
   }
 
   public void bringArmsUp() {
-    RobotMap.rotateMotor.set(-1);
+    RobotMap.rotateMotor.set(-.5);
   }
 
   public void rotateMotorOff() {
