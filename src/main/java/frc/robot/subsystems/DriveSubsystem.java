@@ -33,4 +33,8 @@ public class DriveSubsystem extends Subsystem {
     RobotMap.driveTrain.arcadeDrive(turn, move);
   }
 
+  public void drive(double m, double t) {
+    RobotMap.driveTrain.arcadeDrive(t, -m);
+  }
+
 }

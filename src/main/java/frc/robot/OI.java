@@ -15,7 +15,7 @@ import frc.robot.commands.RocketLvl3Cargo;
 import frc.robot.commands.RocketLvl1Hatch;
 import frc.robot.commands.RocketLvl2Hatch;
 import frc.robot.commands.RocketLvl3Hatch;
-import frc.robot.commands.GrabCargoT;
+import frc.robot.commands.GrabCargo;
 import frc.robot.commands.ShootCargoT;
 import frc.robot.commands.GrabHatchFloor;
 import frc.robot.commands.ArmsUp;
@@ -24,6 +24,7 @@ import frc.robot.commands.RaiseElevatorT;
 import frc.robot.commands.LowerElevatorT;
 import frc.robot.commands.FrontClimb;
 import frc.robot.commands.RearClimb;
+import frc.robot.commands.StopSequence;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -90,6 +91,7 @@ public class OI {
     shootHatchButton.whenPressed(new EjectHatch());
 
     operatorStopButton = new JoystickButton(operatorJoystick, 2);
+    operatorStopButton.whileHeld(new StopSequence());
 
     elevatorUpButton = new JoystickButton(operatorJoystick, 5);
     elevatorUpButton.whileHeld(new RaiseElevatorT());
@@ -101,7 +103,7 @@ public class OI {
     shootCargoButton.whileHeld(new ShootCargoT());
 
     grabCargoButton = new JoystickButton(operatorJoystick, 8);
-    grabCargoButton.whileHeld(new GrabCargoT());
+    grabCargoButton.whileHeld(new GrabCargo());
 
     grabHatchFloorButton = new JoystickButton(operatorJoystick, 9);
     grabHatchFloorButton.whileHeld(new GrabHatchFloor());
@@ -128,6 +130,7 @@ public class OI {
     hrl1Button.whenPressed(new RocketLvl1Hatch());
 
     driverStopButton = new JoystickButton(driverJoystick, 2);
+    driverStopButton.whileHeld(new StopSequence());
 
     frontClimbButton = new JoystickButton(driverJoystick, 5);
     frontClimbButton.toggleWhenPressed(new FrontClimb());

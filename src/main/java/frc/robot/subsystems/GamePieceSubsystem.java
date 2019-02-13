@@ -61,7 +61,7 @@ public class GamePieceSubsystem extends Subsystem {
   public void rotateMotorOff() {
     RobotMap.rotateMotor.set(0);
   }
-/*
+
   public void hatchEjection() {
     RobotMap.hatchSolenoid.set(true);
   }
@@ -69,5 +69,5 @@ public class GamePieceSubsystem extends Subsystem {
   public void hatchSolenoidStop() {
     RobotMap.hatchSolenoid.set(false);
   }
-*/
+
 }

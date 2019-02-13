@@ -10,12 +10,16 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class GrabCargoA extends Command {
-  static double time;
-  public GrabCargoA(double t) {
+public class DriveA extends Command {
+  private static double move;
+  private static double turn;
+  private static double time;
+  public DriveA(double m, double c, double t) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.gpSubsystem);
+    requires(Robot.driveSubsystem);
+    move = m;
+    turn = c;
     time = t;
   }
 
@@ -28,7 +32,7 @@ public class GrabCargoA extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.gpSubsystem.cargoIntakeIn();
+    Robot.driveSubsystem.drive(move, turn);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,7 +44,7 @@ public class GrabCargoA extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.gpSubsystem.cargoIntakeOff();
+    Robot.driveSubsystem.drive(0, 0);
   }
 
   // Called when another command which requires one or more of the same
