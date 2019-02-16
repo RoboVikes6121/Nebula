@@ -12,14 +12,12 @@ import frc.robot.Robot;
 
 public class DriveA extends Command {
   private static double move;
-  private static double turn;
   private static double time;
-  public DriveA(double m, double c, double t) {
+  public DriveA(double m, double t) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.driveSubsystem);
     move = m;
-    turn = c;
     time = t;
   }
 
@@ -32,7 +30,7 @@ public class DriveA extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.driveSubsystem.drive(move, turn);
+    Robot.driveSubsystem.drive(move);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -44,7 +42,7 @@ public class DriveA extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.driveSubsystem.drive(0, 0);
+    Robot.driveSubsystem.drive(0);
   }
 
   // Called when another command which requires one or more of the same

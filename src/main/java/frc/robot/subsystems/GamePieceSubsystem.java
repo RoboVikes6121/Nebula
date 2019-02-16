@@ -24,11 +24,11 @@ public class GamePieceSubsystem extends Subsystem {
   }
 
   public void elevatorUp() {
-    RobotMap.elevatorMotor.set(.6);
+    RobotMap.elevatorMotor.set(.66);
   }
 
   public void elevatorDown() {
-    RobotMap.elevatorMotor.set(-.6);
+    RobotMap.elevatorMotor.set(-.66);
   }
 
   public void elevatorOff() {

@@ -30,7 +30,7 @@ import org.opencv.imgproc.Imgproc;
  */
 public class Robot extends TimedRobot {
   public static OI oi;
-  public static DriveSubsystem driveSubsystem = new DriveSubsystem();;
+  public static DriveSubsystem driveSubsystem = new DriveSubsystem();
   public static GamePieceSubsystem gpSubsystem = new GamePieceSubsystem();
   public static ClimbingSubsystem climbSubsystem = new ClimbingSubsystem();
 
@@ -38,9 +38,9 @@ public class Robot extends TimedRobot {
   public static final int IMG_HEIGHT = 240;
 
   public VisionThread visionThread;
-  public double centerX = 0.0;
+  public static double centerX = 160.0;
 
-  public final Object imgLock = new Object();
+  public static final Object imgLock = new Object();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -56,8 +56,9 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+    camera.setFPS(100);
 
     visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
       if (!pipeline.filterContoursOutput().isEmpty()) {
@@ -68,6 +69,7 @@ public class Robot extends TimedRobot {
       }
     });
     visionThread.start();
+    System.out.println(RobotMap.rotationEncoder.get());
   }
 
   /**
@@ -149,12 +151,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    double centerX;
-    synchronized (imgLock) {
-      centerX = this.centerX;
-    }
-    double turn = centerX - (IMG_WIDTH / 2);
-    RobotMap.driveTrain.arcadeDrive(-.6, turn * .005);
   }
 
   /**

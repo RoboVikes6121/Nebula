@@ -1,15 +1,11 @@
 package frc.robot;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.wpi.first.vision.VisionPipeline;
 
 import org.opencv.core.*;
-import org.opencv.features2d.FeatureDetector;
 import org.opencv.imgproc.*;
 
 /**
@@ -25,8 +21,6 @@ public class GripPipeline implements VisionPipeline {
 	private Mat cvResizeOutput = new Mat();
 	private Mat hsvThresholdOutput = new Mat();
 	private Mat cvErodeOutput = new Mat();
-	private Mat maskOutput = new Mat();
-	private MatOfKeyPoint findBlobsOutput = new MatOfKeyPoint();
 	private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<MatOfPoint>();
 	private ArrayList<MatOfPoint> filterContoursOutput = new ArrayList<MatOfPoint>();
 
@@ -62,18 +56,6 @@ public class GripPipeline implements VisionPipeline {
 		Scalar cvErodeBordervalue = new Scalar(-1);
 		cvErode(cvErodeSrc, cvErodeKernel, cvErodeAnchor, cvErodeIterations, cvErodeBordertype, cvErodeBordervalue, cvErodeOutput);
 
-		// Step Mask0:
-		Mat maskInput = cvResizeOutput;
-		Mat maskMask = cvErodeOutput;
-		mask(maskInput, maskMask, maskOutput);
-
-		// Step Find_Blobs0:
-		Mat findBlobsInput = maskOutput;
-		double findBlobsMinArea = 1.0;
-		double[] findBlobsCircularity = {0.0, 1.0};
-		boolean findBlobsDarkBlobs = false;
-		findBlobs(findBlobsInput, findBlobsMinArea, findBlobsCircularity, findBlobsDarkBlobs, findBlobsOutput);
-
 		// Step Find_Contours0:
 		Mat findContoursInput = cvErodeOutput;
 		boolean findContoursExternalOnly = false;
@@ -81,17 +63,17 @@ public class GripPipeline implements VisionPipeline {
 
 		// Step Filter_Contours0:
 		ArrayList<MatOfPoint> filterContoursContours = findContoursOutput;
-		double filterContoursMinArea = 1000.0;
-		double filterContoursMinPerimeter = 0.0;
-		double filterContoursMinWidth = 0.0;
+		double filterContoursMinArea = 100.0;
+		double filterContoursMinPerimeter = 10.0;
+		double filterContoursMinWidth = 10.0;
 		double filterContoursMaxWidth = 1000.0;
-		double filterContoursMinHeight = 0.0;
+		double filterContoursMinHeight = 10.0;
 		double filterContoursMaxHeight = 1000.0;
-		double[] filterContoursSolidity = {96.22302158273382, 100.0};
-		double filterContoursMaxVertices = 1000000.0;
+		double[] filterContoursSolidity = {89.92805755395685, 100.0};
+		double filterContoursMaxVertices = 1000.0;
 		double filterContoursMinVertices = 0.0;
 		double filterContoursMinRatio = 0.0;
-		double filterContoursMaxRatio = 1000.0;
+		double filterContoursMaxRatio = 100.0;
 		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
 
 	}
@@ -118,22 +100,6 @@ public class GripPipeline implements VisionPipeline {
 	 */
 	public Mat cvErodeOutput() {
 		return cvErodeOutput;
-	}
-
-	/**
-	 * This method is a generated getter for the output of a Mask.
-	 * @return Mat output from Mask.
-	 */
-	public Mat maskOutput() {
-		return maskOutput;
-	}
-
-	/**
-	 * This method is a generated getter for the output of a Find_Blobs.
-	 * @return MatOfKeyPoint output from Find_Blobs.
-	 */
-	public MatOfKeyPoint findBlobsOutput() {
-		return findBlobsOutput;
 	}
 
 	/**
@@ -208,78 +174,6 @@ public class GripPipeline implements VisionPipeline {
 			borderValue = new Scalar(-1);
 		}
 		Imgproc.erode(src, dst, kernel, anchor, (int)iterations, borderType, borderValue);
-	}
-
-	/**
-	 * Filter out an area of an image using a binary mask.
-	 * @param input The image on which the mask filters.
-	 * @param mask The binary image that is used to filter.
-	 * @param output The image in which to store the output.
-	 */
-	private void mask(Mat input, Mat mask, Mat output) {
-		mask.convertTo(mask, CvType.CV_8UC1);
-		Core.bitwise_xor(output, output, output);
-		input.copyTo(output, mask);
-	}
-
-	/**
-	 * Detects groups of pixels in an image.
-	 * @param input The image on which to perform the find blobs.
-	 * @param minArea The minimum size of a blob that will be found
-	 * @param circularity The minimum and maximum circularity of blobs that will be found
-	 * @param darkBlobs The boolean that determines if light or dark blobs are found.
-	 * @param blobList The output where the MatOfKeyPoint is stored.
-	 */
-	private void findBlobs(Mat input, double minArea, double[] circularity,
-		Boolean darkBlobs, MatOfKeyPoint blobList) {
-		FeatureDetector blobDet = FeatureDetector.create(FeatureDetector.SIMPLEBLOB);
-		try {
-			File tempFile = File.createTempFile("config", ".xml");
-
-			StringBuilder config = new StringBuilder();
-
-			config.append("<?xml version=\"1.0\"?>\n");
-			config.append("<opencv_storage>\n");
-			config.append("<thresholdStep>10.</thresholdStep>\n");
-			config.append("<minThreshold>50.</minThreshold>\n");
-			config.append("<maxThreshold>220.</maxThreshold>\n");
-			config.append("<minRepeatability>2</minRepeatability>\n");
-			config.append("<minDistBetweenBlobs>10.</minDistBetweenBlobs>\n");
-			config.append("<filterByColor>1</filterByColor>\n");
-			config.append("<blobColor>");
-			config.append((darkBlobs ? 0 : 255));
-			config.append("</blobColor>\n");
-			config.append("<filterByArea>1</filterByArea>\n");
-			config.append("<minArea>");
-			config.append(minArea);
-			config.append("</minArea>\n");
-			config.append("<maxArea>");
-			config.append(Integer.MAX_VALUE);
-			config.append("</maxArea>\n");
-			config.append("<filterByCircularity>1</filterByCircularity>\n");
-			config.append("<minCircularity>");
-			config.append(circularity[0]);
-			config.append("</minCircularity>\n");
-			config.append("<maxCircularity>");
-			config.append(circularity[1]);
-			config.append("</maxCircularity>\n");
-			config.append("<filterByInertia>1</filterByInertia>\n");
-			config.append("<minInertiaRatio>0.1</minInertiaRatio>\n");
-			config.append("<maxInertiaRatio>" + Integer.MAX_VALUE + "</maxInertiaRatio>\n");
-			config.append("<filterByConvexity>1</filterByConvexity>\n");
-			config.append("<minConvexity>0.95</minConvexity>\n");
-			config.append("<maxConvexity>" + Integer.MAX_VALUE + "</maxConvexity>\n");
-			config.append("</opencv_storage>\n");
-			FileWriter writer;
-			writer = new FileWriter(tempFile, false);
-			writer.write(config.toString());
-			writer.close();
-			blobDet.read(tempFile.getPath());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		blobDet.detect(input, blobList);
 	}
 
 	/**
