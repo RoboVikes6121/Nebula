@@ -37,10 +37,13 @@ public class Robot extends TimedRobot {
   public static final int IMG_WIDTH = 320;
   public static final int IMG_HEIGHT = 240;
 
-  public VisionThread visionThread;
-  public static double centerX = 160.0;
+  public VisionThread visionThread1;
+  public VisionThread visionThread2;
+  public static double centerX1 = 160.0;
+  public static double centerX2 = 160.0;
 
-  public static final Object imgLock = new Object();
+  public static final Object imgLock1 = new Object();
+  public static final Object imgLock2 = new Object();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -60,16 +63,24 @@ public class Robot extends TimedRobot {
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
     camera.setFPS(100);
 
-    visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+    visionThread1 = new VisionThread(camera, new GripPipeline(), pipeline -> {
       if (!pipeline.filterContoursOutput().isEmpty()) {
-        Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-        synchronized (imgLock) {
-          centerX = r.x + (r.width / 2);
+        Rect r1 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+        synchronized (imgLock1) {
+          centerX1 = r1.x + r1.width;
         }
       }
     });
-    visionThread.start();
-    System.out.println(RobotMap.rotationEncoder.get());
+    visionThread2 = new VisionThread(camera, new GripPipeline(), pipeline -> {
+      if (!pipeline.filterContoursOutput().isEmpty()) {
+        Rect r2 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
+        synchronized (imgLock2) {
+          centerX2 = r2.x;
+        }
+      }
+    });
+    visionThread1.start();
+    visionThread2.start();
   }
 
   /**

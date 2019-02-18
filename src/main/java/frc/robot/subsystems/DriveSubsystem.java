@@ -29,18 +29,16 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public void arcadeDrive(Joystick stick) {
-    double move = -stick.getRawAxis(1) * .7;
+    double move = stick.getRawAxis(1) * .7;
     double turn = stick.getRawAxis(4) * .7;
     RobotMap.driveTrain.arcadeDrive(move, turn);
   }
 
   public void drive(double m) {
     double centerX;
-    synchronized (Robot.imgLock) {
-      centerX = Robot.centerX;
-    }
+    centerX = (Robot.centerX1 + Robot.centerX2) / 2;
     double turn = centerX - (Robot.IMG_WIDTH / 2);
-    RobotMap.driveTrain.arcadeDrive(-m, turn * .005);
+    RobotMap.driveTrain.arcadeDrive(m, turn * .005);
   }
 
 }

@@ -71,7 +71,7 @@ public class RobotMap {
     rearClimbSolenoid = new Solenoid(2);
 
     gyro = new AnalogGyro(1);
-    rotationEncoder = new Counter(new DigitalInput(3));
+    rotationEncoder = new Counter(new DigitalInput(0));
 
   }
 }
