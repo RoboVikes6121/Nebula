@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -37,9 +37,9 @@ public class RobotMap {
   public static DifferentialDrive driveTrain;
 
   public static WPI_VictorSPX elevatorMotor;
-  public static Victor intakeMotor1;
-  public static Victor intakeMotor2;
-  public static Victor rotateMotor;
+  public static VictorSP intakeMotor1;
+  public static VictorSP intakeMotor2;
+  public static VictorSP rotateMotor;
 
   public static Solenoid hatchSolenoid;
   public static Solenoid frontClimbSolenoid;
@@ -62,16 +62,18 @@ public class RobotMap {
     rightSlave.follow(rightMotor);
 
     elevatorMotor = new WPI_VictorSPX(4);
-    rotateMotor = new Victor(0);
-    intakeMotor1 = new Victor(1);
-    intakeMotor2 = new Victor(2);
+    rotateMotor = new VictorSP(0);
+    intakeMotor1 = new VictorSP(1);
+    intakeMotor2 = new VictorSP(2);
 
     hatchSolenoid = new Solenoid(0);
     frontClimbSolenoid = new Solenoid(1);
     rearClimbSolenoid = new Solenoid(2);
 
     gyro = new AnalogGyro(1);
-    rotationEncoder = new Counter(new DigitalInput(0));
+    rotationEncoder = new Counter(new DigitalInput(3));
+
+    rotationEncoder.setDistancePerPulse(.0001);
 
   }
 }

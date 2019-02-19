@@ -37,13 +37,11 @@ public class Robot extends TimedRobot {
   public static final int IMG_WIDTH = 320;
   public static final int IMG_HEIGHT = 240;
 
-  public VisionThread visionThread1;
-  public VisionThread visionThread2;
-  public static double centerX1 = 160.0;
-  public static double centerX2 = 160.0;
+  public VisionThread visionThread;
+  public static double target1 = 160;
+  public static double target2 = 160;
 
-  public static final Object imgLock1 = new Object();
-  public static final Object imgLock2 = new Object();
+  public static final Object imgLock = new Object();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -61,26 +59,18 @@ public class Robot extends TimedRobot {
 
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-    camera.setFPS(100);
 
-    visionThread1 = new VisionThread(camera, new GripPipeline(), pipeline -> {
+    visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
       if (!pipeline.filterContoursOutput().isEmpty()) {
         Rect r1 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-        synchronized (imgLock1) {
-          centerX1 = r1.x + r1.width;
-        }
-      }
-    });
-    visionThread2 = new VisionThread(camera, new GripPipeline(), pipeline -> {
-      if (!pipeline.filterContoursOutput().isEmpty()) {
         Rect r2 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
-        synchronized (imgLock2) {
-          centerX2 = r2.x;
+        synchronized (imgLock) {
+          target1 = r1.x + r1.width;
+          target2 = r2.x;
         }
       }
     });
-    visionThread1.start();
-    visionThread2.start();
+    visionThread.start();
   }
 
   /**
