@@ -32,8 +32,8 @@ public class RocketLvl2Cargo extends CommandGroup {
     // arm.
 
     addSequential(new DriveA(.7, .2));
-    addSequential(new RaiseElevatorA(5.5));
+    addSequential(new RaiseElevatorA(3.5));
     addSequential(new ShootCargoA(.1));
-    addSequential(new LowerElevatorA(5.5));
+    addSequential(new LowerElevatorA(3.5));
   }
 }

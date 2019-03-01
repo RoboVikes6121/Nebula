@@ -32,8 +32,8 @@ public class RocketLvl2Hatch extends CommandGroup {
     // arm.
 
     addSequential(new DriveA(.7, .2));
-    addSequential(new RaiseElevatorA(5.5));
+    addSequential(new RaiseElevatorA(3.5));
     addSequential(new EjectHatch());
-    addSequential(new LowerElevatorA(5.5));
+    addSequential(new LowerElevatorA(3.5));
   }
 }
