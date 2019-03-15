@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.OI;
 
 public class ArmsUp extends Command {
   public ArmsUp() {
@@ -44,6 +45,8 @@ public class ArmsUp extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
+    if (OI.operatorJoystick.getRawButtonReleased(6)) {
+      end();
+    }
   }
 }

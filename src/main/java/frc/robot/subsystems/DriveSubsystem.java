@@ -37,7 +37,7 @@ public class DriveSubsystem extends Subsystem {
   public void drive(double m) {
     double target;
     synchronized (Robot.imgLock) {
-      target = (Robot.target1 + Robot.target2) / 2;
+      target = Robot.target;
     }
     double turn = target - (Robot.IMG_WIDTH / 2);
     RobotMap.driveTrain.arcadeDrive(m, turn * .005);

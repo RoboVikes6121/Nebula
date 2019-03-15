@@ -38,8 +38,7 @@ public class Robot extends TimedRobot {
   public static final int IMG_HEIGHT = 240;
 
   public VisionThread visionThread;
-  public static double target1 = 160;
-  public static double target2 = 160;
+  public static double target = 160;
 
   public static final Object imgLock = new Object();
 
@@ -63,10 +62,8 @@ public class Robot extends TimedRobot {
     visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
       if (!pipeline.filterContoursOutput().isEmpty()) {
         Rect r1 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-        Rect r2 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
         synchronized (imgLock) {
-          target1 = r1.x + r1.width;
-          target2 = r2.x;
+          target = r1.x;
         }
       }
     });

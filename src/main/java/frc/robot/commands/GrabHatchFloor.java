@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.OI;
 
 public class GrabHatchFloor extends Command {
   public GrabHatchFloor() {
@@ -44,6 +45,8 @@ public class GrabHatchFloor extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
+    if (OI.operatorJoystick.getRawButtonReleased(9)) {
+      end();
+    }
   }
 }

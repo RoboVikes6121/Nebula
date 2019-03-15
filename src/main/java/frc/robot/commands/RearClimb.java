@@ -25,7 +25,7 @@ public class RearClimb extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.climbSubsystem.rearClimbSolenoidOn();
+    Robot.climbSubsystem.rearClimbSolenoidExtend();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +37,7 @@ public class RearClimb extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //Robot.climbSubsystem.rearClimbSolenoidOff();
+    Robot.climbSubsystem.rearClimbSolenoidRetract();
   }
 
   // Called when another command which requires one or more of the same

@@ -88,7 +88,7 @@ public class OI {
     operatorJoystick = new Joystick(1);
 
     shootHatchButton = new JoystickButton(operatorJoystick, 1);
-    shootHatchButton.whenPressed(new EjectHatch());
+    shootHatchButton.whileHeld(new EjectHatch());
 
     operatorStopButton = new JoystickButton(operatorJoystick, 2);
     operatorStopButton.whileHeld(new StopSequence());
@@ -133,10 +133,10 @@ public class OI {
     driverStopButton.whileHeld(new StopSequence());
 
     frontClimbButton = new JoystickButton(driverJoystick, 5);
-    frontClimbButton.toggleWhenPressed(new FrontClimb());
+    frontClimbButton.whileHeld(new FrontClimb());
 
     rearClimbButton = new JoystickButton(driverJoystick, 6);
-    rearClimbButton.toggleWhenPressed(new RearClimb());
+    rearClimbButton.whileHeld(new RearClimb());
 
   }
 }

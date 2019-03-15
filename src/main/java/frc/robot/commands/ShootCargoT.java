@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.OI;
 
 public class ShootCargoT extends Command {
   public ShootCargoT() {
@@ -44,6 +45,8 @@ public class ShootCargoT extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
+    if (OI.operatorJoystick.getRawButtonReleased(7)) {
+      end();
+    }
   }
 }

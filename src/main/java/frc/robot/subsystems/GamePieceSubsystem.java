@@ -60,8 +60,6 @@ public class GamePieceSubsystem extends Subsystem {
 
   public void rotateMotorOff() {
     RobotMap.rotateMotor.set(0);
-    System.out.println(RobotMap.rotationEncoder.getDistance());
-    System.out.println(RobotMap.rotationEncoder.get());
   }
 
   public void hatchEjection() {

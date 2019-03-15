@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -43,15 +44,15 @@ public class RobotMap {
 
   public static Solenoid hatchSolenoid;
   public static Solenoid frontClimbSolenoid;
-  public static Solenoid rearClimbSolenoid;
+  public static DoubleSolenoid rearClimbSolenoid;
 
   public static Gyro gyro;
   public static Counter rotationEncoder;
 
   public static void init() {
 
-    WPI_TalonSRX leftMotor = new WPI_TalonSRX(1);
-    WPI_TalonSRX rightMotor = new WPI_TalonSRX(0);
+    WPI_TalonSRX leftMotor = new WPI_TalonSRX(0);
+    WPI_TalonSRX rightMotor = new WPI_TalonSRX(1);
 
     WPI_TalonSRX leftSlave = new WPI_TalonSRX(3);
     WPI_TalonSRX rightSlave = new WPI_TalonSRX(2);
@@ -68,7 +69,7 @@ public class RobotMap {
 
     hatchSolenoid = new Solenoid(0);
     frontClimbSolenoid = new Solenoid(1);
-    rearClimbSolenoid = new Solenoid(2);
+    rearClimbSolenoid = new DoubleSolenoid(3, 2);
 
     gyro = new AnalogGyro(1);
     rotationEncoder = new Counter(new DigitalInput(0));
