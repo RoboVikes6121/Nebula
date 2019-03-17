@@ -9,13 +9,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.OI;
 
 public class ShootCargoT extends Command {
   public ShootCargoT() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.gpSubsystem);
+    requires(Robot.ciSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -26,7 +25,7 @@ public class ShootCargoT extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.gpSubsystem.cargoIntakeOut();
+    Robot.ciSubsystem.cargoIntakeOut();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,15 +37,13 @@ public class ShootCargoT extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.gpSubsystem.cargoIntakeOff();
+    Robot.ciSubsystem.cargoIntakeOff();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    if (OI.operatorJoystick.getRawButtonReleased(7)) {
-      end();
-    }
+    end();
   }
 }

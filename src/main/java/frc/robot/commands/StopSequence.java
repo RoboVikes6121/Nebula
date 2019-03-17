@@ -14,7 +14,10 @@ public class StopSequence extends Command {
   public StopSequence() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.gpSubsystem);
+    requires(Robot.ciSubsystem);
+    requires(Robot.elevatorSubsystem);
+    requires(Robot.armsSubsystem);
+    requires(Robot.driveSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -25,10 +28,11 @@ public class StopSequence extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.gpSubsystem.elevatorOff();
-    Robot.gpSubsystem.cargoIntakeOff();
-    Robot.gpSubsystem.rotateMotorOff();
-    Robot.gpSubsystem.hatchSolenoidStop();
+    Robot.elevatorSubsystem.elevatorOff();
+    Robot.ciSubsystem.cargoIntakeOff();
+    Robot.armsSubsystem.rotateMotorOff();
+    Robot.hiSubsystem.hatchSolenoidStop();
+    Robot.driveSubsystem.stopDriving();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,10 +44,11 @@ public class StopSequence extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.gpSubsystem.elevatorOff();
-    Robot.gpSubsystem.cargoIntakeOff();
-    Robot.gpSubsystem.rotateMotorOff();
-    Robot.gpSubsystem.hatchSolenoidStop();
+    Robot.elevatorSubsystem.elevatorOff();
+    Robot.ciSubsystem.cargoIntakeOff();
+    Robot.armsSubsystem.rotateMotorOff();
+    Robot.hiSubsystem.hatchSolenoidStop();
+    Robot.driveSubsystem.stopDriving();
   }
 
   // Called when another command which requires one or more of the same

@@ -31,7 +31,7 @@ public class RocketLvl1Hatch extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    addSequential(new DriveA(0, 2));
+    addSequential(new DriveA(0, 5));
     addSequential(new EjectHatch());
   }
 }

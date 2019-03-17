@@ -13,13 +13,16 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.GamePieceSubsystem;
+import frc.robot.subsystems.CargoIntakeSubsystem;
 import frc.robot.subsystems.ClimbingSubsystem;
 import edu.wpi.first.vision.VisionThread;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
+import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.ArmsSubsystem;
+import frc.robot.subsystems.HatchIntakeSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,8 +34,11 @@ import org.opencv.imgproc.Imgproc;
 public class Robot extends TimedRobot {
   public static OI oi;
   public static DriveSubsystem driveSubsystem = new DriveSubsystem();
-  public static GamePieceSubsystem gpSubsystem = new GamePieceSubsystem();
+  public static CargoIntakeSubsystem ciSubsystem = new CargoIntakeSubsystem();
   public static ClimbingSubsystem climbSubsystem = new ClimbingSubsystem();
+  public static ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+  public static ArmsSubsystem armsSubsystem = new ArmsSubsystem();
+  public static HatchIntakeSubsystem hiSubsystem = new HatchIntakeSubsystem();
 
   public static final int IMG_WIDTH = 320;
   public static final int IMG_HEIGHT = 240;
@@ -58,6 +64,7 @@ public class Robot extends TimedRobot {
 
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+    camera.setFPS(20);
 
     visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
       if (!pipeline.filterContoursOutput().isEmpty()) {

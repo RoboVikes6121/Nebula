@@ -51,8 +51,8 @@ public class RobotMap {
 
   public static void init() {
 
-    WPI_TalonSRX leftMotor = new WPI_TalonSRX(0);
-    WPI_TalonSRX rightMotor = new WPI_TalonSRX(1);
+    WPI_TalonSRX leftMotor = new WPI_TalonSRX(1);
+    WPI_TalonSRX rightMotor = new WPI_TalonSRX(0);
 
     WPI_TalonSRX leftSlave = new WPI_TalonSRX(3);
     WPI_TalonSRX rightSlave = new WPI_TalonSRX(2);

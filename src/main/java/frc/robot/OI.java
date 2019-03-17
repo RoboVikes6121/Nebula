@@ -88,7 +88,7 @@ public class OI {
     operatorJoystick = new Joystick(1);
 
     shootHatchButton = new JoystickButton(operatorJoystick, 1);
-    shootHatchButton.whileHeld(new EjectHatch());
+    shootHatchButton.whenPressed(new EjectHatch());
 
     operatorStopButton = new JoystickButton(operatorJoystick, 2);
     operatorStopButton.whileHeld(new StopSequence());

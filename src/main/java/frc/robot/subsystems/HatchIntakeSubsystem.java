@@ -8,43 +8,27 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.ArcadeDrive;
-import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.RobotMap;
-import frc.robot.Robot;
 
 /**
  * Add your docs here.
  */
-public class DriveSubsystem extends Subsystem {
+public class HatchIntakeSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  double rotateToAngleRate;
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new ArcadeDrive());
   }
 
-  public void arcadeDrive(Joystick stick) {
-    double move = stick.getRawAxis(1) * .8;
-    double turn = stick.getRawAxis(4) * .8;
-    RobotMap.driveTrain.arcadeDrive(move, turn);
+  public void hatchEjection() {
+    RobotMap.hatchSolenoid.set(true);
   }
 
-  public void drive(double m) {
-    double target;
-    synchronized (Robot.imgLock) {
-      target = Robot.target;
-    }
-    double turn = target - (Robot.IMG_WIDTH / 2);
-    RobotMap.driveTrain.arcadeDrive(m, turn * .005);
-  }
-
-  public void stopDriving() {
-    RobotMap.driveTrain.arcadeDrive(0, 0);
+  public void hatchSolenoidStop() {
+    RobotMap.hatchSolenoid.set(false);
   }
 
 }
