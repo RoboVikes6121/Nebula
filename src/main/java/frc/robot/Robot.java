@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
 
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-    camera.setFPS(20);
+    camera.setFPS(60);
 
     visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
       if (!pipeline.filterContoursOutput().isEmpty()) {

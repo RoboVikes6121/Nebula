@@ -40,7 +40,7 @@ public class DriveSubsystem extends Subsystem {
       target = Robot.target;
     }
     double turn = target - (Robot.IMG_WIDTH / 2);
-    RobotMap.driveTrain.arcadeDrive(m, turn * .005);
+    RobotMap.driveTrain.arcadeDrive(m, turn * .005 / 1.5);
   }
 
   public void stopDriving() {
