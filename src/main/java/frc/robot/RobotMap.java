@@ -10,13 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Counter;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -37,14 +33,14 @@ public class RobotMap {
 
   public static DifferentialDrive driveTrain;
 
-  public static WPI_VictorSPX elevatorMotor;
+  public static WPI_TalonSRX elevatorMotor;
   public static VictorSP intakeMotor1;
   public static VictorSP intakeMotor2;
   public static VictorSP rotateMotor;
 
   public static Solenoid hatchSolenoid;
   public static Solenoid frontClimbSolenoid;
-  public static DoubleSolenoid rearClimbSolenoid;
+  public static Solenoid rearClimbSolenoid;
 
   public static Gyro gyro;
   public static Counter rotationEncoder;
@@ -62,19 +58,14 @@ public class RobotMap {
     leftSlave.follow(leftMotor);
     rightSlave.follow(rightMotor);
 
-    elevatorMotor = new WPI_VictorSPX(4);
+    elevatorMotor = new WPI_TalonSRX(4);
     rotateMotor = new VictorSP(0);
     intakeMotor1 = new VictorSP(1);
     intakeMotor2 = new VictorSP(2);
 
     hatchSolenoid = new Solenoid(0);
     frontClimbSolenoid = new Solenoid(1);
-    rearClimbSolenoid = new DoubleSolenoid(3, 2);
-
-    gyro = new AnalogGyro(1);
-    rotationEncoder = new Counter(new DigitalInput(0));
-
-    rotationEncoder.setDistancePerPulse(.0001);
+    rearClimbSolenoid = new Solenoid(2);
 
   }
 }

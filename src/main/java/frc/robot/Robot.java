@@ -16,10 +16,10 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.CargoIntakeSubsystem;
 import frc.robot.subsystems.ClimbingSubsystem;
 import edu.wpi.first.vision.VisionThread;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.cameraserver.CameraServer;
-import org.opencv.core.Rect;
-import org.opencv.imgproc.Imgproc;
+//import edu.wpi.cscore.UsbCamera;
+//import edu.wpi.first.cameraserver.CameraServer;
+//import org.opencv.core.Rect;
+//import org.opencv.imgproc.Imgproc;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.ArmsSubsystem;
 import frc.robot.subsystems.HatchIntakeSubsystem;
@@ -61,7 +61,7 @@ public class Robot extends TimedRobot {
     oi = new OI();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-
+/*
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
     camera.setFPS(60);
@@ -74,7 +74,7 @@ public class Robot extends TimedRobot {
         }
       }
     });
-    visionThread.start();
+    visionThread.start();*/
   }
 
   /**

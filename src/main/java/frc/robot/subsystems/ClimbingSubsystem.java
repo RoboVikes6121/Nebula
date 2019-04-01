@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -29,15 +28,15 @@ public class ClimbingSubsystem extends Subsystem {
   }
 
   public void rearClimbSolenoidExtend() {
-    RobotMap.rearClimbSolenoid.set(Value.kForward);
-  }
-
-  public void rearClimbSolenoidRetract() {
-    RobotMap.rearClimbSolenoid.set(Value.kReverse);
+    RobotMap.rearClimbSolenoid.set(true);
   }
 
   public void frontClimbSolenoidOff() {
     RobotMap.frontClimbSolenoid.set(false);
+  }
+
+  public void rearClimbSolenoidOff() {
+    RobotMap.rearClimbSolenoid.set(false);
   }
 
 }

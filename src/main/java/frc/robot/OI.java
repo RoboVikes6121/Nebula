@@ -9,12 +9,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.RocketLvl1Cargo;
-import frc.robot.commands.RocketLvl2Cargo;
-import frc.robot.commands.RocketLvl3Cargo;
-import frc.robot.commands.RocketLvl1Hatch;
-import frc.robot.commands.RocketLvl2Hatch;
-import frc.robot.commands.RocketLvl3Hatch;
+//import frc.robot.commands.RocketLvl1Cargo;
+//import frc.robot.commands.RocketLvl2Cargo;
+//import frc.robot.commands.RocketLvl3Cargo;
+//import frc.robot.commands.RocketLvl1Hatch;
+//import frc.robot.commands.RocketLvl2Hatch;
+//import frc.robot.commands.RocketLvl3Hatch;
 import frc.robot.commands.GrabCargo;
 import frc.robot.commands.ShootCargoT;
 import frc.robot.commands.GrabHatchFloor;
@@ -88,16 +88,19 @@ public class OI {
     operatorJoystick = new Joystick(1);
 
     shootHatchButton = new JoystickButton(operatorJoystick, 1);
-    shootHatchButton.whenPressed(new EjectHatch());
+    shootHatchButton.toggleWhenPressed(new EjectHatch());
 
     operatorStopButton = new JoystickButton(operatorJoystick, 2);
     operatorStopButton.whileHeld(new StopSequence());
 
+    grabHatchFloorButton = new JoystickButton(operatorJoystick, 3);
+    grabHatchFloorButton.whileHeld(new GrabHatchFloor());
+
+    armsUpButton = new JoystickButton(operatorJoystick, 4);
+    armsUpButton.whileHeld(new ArmsUp());
+
     elevatorUpButton = new JoystickButton(operatorJoystick, 5);
     elevatorUpButton.whileHeld(new RaiseElevatorT());
-
-    armsUpButton = new JoystickButton(operatorJoystick, 6);
-    armsUpButton.whileHeld(new ArmsUp());
 
     shootCargoButton = new JoystickButton(operatorJoystick, 7);
     shootCargoButton.whileHeld(new ShootCargoT());
@@ -105,12 +108,9 @@ public class OI {
     grabCargoButton = new JoystickButton(operatorJoystick, 8);
     grabCargoButton.whileHeld(new GrabCargo());
 
-    grabHatchFloorButton = new JoystickButton(operatorJoystick, 9);
-    grabHatchFloorButton.whileHeld(new GrabHatchFloor());
-
     elevatorDownButton = new JoystickButton(operatorJoystick, 10);
     elevatorDownButton.whileHeld(new LowerElevatorT());
-
+/*
     crl1Button = new JoystickButton(operatorJoystick, 11);
     crl1Button.whenPressed(new RocketLvl1Cargo());
 
@@ -128,7 +128,7 @@ public class OI {
 
     hrl1Button = new JoystickButton(operatorJoystick, 16);
     hrl1Button.whenPressed(new RocketLvl1Hatch());
-
+*/
     driverStopButton = new JoystickButton(driverJoystick, 2);
     driverStopButton.whileHeld(new StopSequence());
 
