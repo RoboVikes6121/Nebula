@@ -23,6 +23,7 @@ import edu.wpi.first.vision.VisionThread;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.ArmsSubsystem;
 import frc.robot.subsystems.HatchIntakeSubsystem;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -96,6 +97,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    RobotMap.rearClimbSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   @Override

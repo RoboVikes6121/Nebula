@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Counter;
 
@@ -40,7 +41,7 @@ public class RobotMap {
 
   public static Solenoid hatchSolenoid;
   public static Solenoid frontClimbSolenoid;
-  public static Solenoid rearClimbSolenoid;
+  public static DoubleSolenoid rearClimbSolenoid;
 
   public static Gyro gyro;
   public static Counter rotationEncoder;
@@ -65,7 +66,7 @@ public class RobotMap {
 
     hatchSolenoid = new Solenoid(0);
     frontClimbSolenoid = new Solenoid(1);
-    rearClimbSolenoid = new Solenoid(2);
+    rearClimbSolenoid = new DoubleSolenoid(2, 3);
 
   }
 }

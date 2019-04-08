@@ -24,11 +24,11 @@ public class ArmsSubsystem extends Subsystem {
   }
 
   public void pickUpHatch() {
-    RobotMap.rotateMotor.set(-.5);
+    RobotMap.rotateMotor.set(-.75);
   }
 
   public void bringArmsUp() {
-    RobotMap.rotateMotor.set(.5);
+    RobotMap.rotateMotor.set(.75);
   }
 
   public void rotateMotorOff() {

@@ -90,9 +90,6 @@ public class OI {
     shootHatchButton = new JoystickButton(operatorJoystick, 1);
     shootHatchButton.toggleWhenPressed(new EjectHatch());
 
-    operatorStopButton = new JoystickButton(operatorJoystick, 2);
-    operatorStopButton.whileHeld(new StopSequence());
-
     grabHatchFloorButton = new JoystickButton(operatorJoystick, 3);
     grabHatchFloorButton.whileHeld(new GrabHatchFloor());
 
@@ -110,9 +107,10 @@ public class OI {
 
     elevatorDownButton = new JoystickButton(operatorJoystick, 10);
     elevatorDownButton.whileHeld(new LowerElevatorT());
+
+    rearClimbButton = new JoystickButton(operatorJoystick, 2);
+    rearClimbButton.whileHeld(new RearClimb());
 /*
-    crl1Button = new JoystickButton(operatorJoystick, 11);
-    crl1Button.whenPressed(new RocketLvl1Cargo());
 
     crl2Button = new JoystickButton(operatorJoystick, 12);
     crl2Button.whenPressed(new RocketLvl2Cargo());
@@ -125,18 +123,12 @@ public class OI {
 
     hrl2Button = new JoystickButton(operatorJoystick, 15);
     hrl2Button.whenPressed(new RocketLvl2Hatch());
-
-    hrl1Button = new JoystickButton(operatorJoystick, 16);
-    hrl1Button.whenPressed(new RocketLvl1Hatch());
 */
     driverStopButton = new JoystickButton(driverJoystick, 2);
     driverStopButton.whileHeld(new StopSequence());
 
     frontClimbButton = new JoystickButton(driverJoystick, 5);
     frontClimbButton.whileHeld(new FrontClimb());
-
-    rearClimbButton = new JoystickButton(driverJoystick, 6);
-    rearClimbButton.whileHeld(new RearClimb());
 
   }
 }
