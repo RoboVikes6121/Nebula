@@ -13,7 +13,7 @@ import frc.robot.RobotMap;
 /**
  * Add your docs here.
  */
-public class GamePieceSubsystem extends Subsystem {
+public class ArmsSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -23,51 +23,16 @@ public class GamePieceSubsystem extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void elevatorUp() {
-    RobotMap.elevatorMotor.set(.5);
-  }
-
-  public void elevatorDown() {
-    RobotMap.elevatorMotor.set(-.5);
-  }
-
-  public void elevatorOff() {
-    RobotMap.elevatorMotor.set(0);
-  }
-
-  public void cargoIntakeIn() {
-      RobotMap.intakeMotor1.set(.5);
-      RobotMap.intakeMotor2.set(-.5);
-  }
-
-  public void cargoIntakeOut() {
-    RobotMap.intakeMotor1.set(-.5);
-    RobotMap.intakeMotor2.set(.5);
-  }
-
-  public void cargoIntakeOff() {
-    RobotMap.intakeMotor1.set(0);
-    RobotMap.intakeMotor2.set(0);
-  }
-
   public void pickUpHatch() {
-    RobotMap.rotateMotor.set(.5);
+    RobotMap.rotateMotor.set(-.75);
   }
 
   public void bringArmsUp() {
-    RobotMap.rotateMotor.set(-.5);
+    RobotMap.rotateMotor.set(.75);
   }
 
   public void rotateMotorOff() {
     RobotMap.rotateMotor.set(0);
-  }
-
-  public void hatchEjection() {
-    RobotMap.hatchSolenoid.set(true);
-  }
-
-  public void hatchSolenoidStop() {
-    RobotMap.hatchSolenoid.set(false);
   }
 
 }

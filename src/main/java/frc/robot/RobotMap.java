@@ -8,10 +8,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.Counter;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -32,13 +34,17 @@ public class RobotMap {
 
   public static DifferentialDrive driveTrain;
 
-  public static WPI_VictorSPX elevatorMotor;
-  public static WPI_VictorSPX climbMotor;
-  public static Victor intakeMotor1;
-  public static Victor intakeMotor2;
-  public static WPI_TalonSRX rotateMotor;
+  public static WPI_TalonSRX elevatorMotor;
+  public static VictorSP intakeMotor1;
+  public static VictorSP intakeMotor2;
+  public static VictorSP rotateMotor;
 
   public static Solenoid hatchSolenoid;
+  public static Solenoid frontClimbSolenoid;
+  public static DoubleSolenoid rearClimbSolenoid;
+
+  public static Gyro gyro;
+  public static Counter rotationEncoder;
 
   public static void init() {
 
@@ -50,18 +56,17 @@ public class RobotMap {
 
     driveTrain = new DifferentialDrive(leftMotor, rightMotor);
 
-    driveTrain.setExpiration(.1);
-
     leftSlave.follow(leftMotor);
     rightSlave.follow(rightMotor);
 
-    intakeMotor1 = new Victor(7);
-    intakeMotor2 = new Victor(8);
-    elevatorMotor = new WPI_VictorSPX(6);
-    climbMotor = new WPI_VictorSPX(4);
-    rotateMotor = new WPI_TalonSRX(5);
+    elevatorMotor = new WPI_TalonSRX(4);
+    rotateMotor = new VictorSP(0);
+    intakeMotor1 = new VictorSP(1);
+    intakeMotor2 = new VictorSP(2);
 
     hatchSolenoid = new Solenoid(0);
+    frontClimbSolenoid = new Solenoid(1);
+    rearClimbSolenoid = new DoubleSolenoid(2, 3);
 
   }
 }

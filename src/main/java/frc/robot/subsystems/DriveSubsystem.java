@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ArcadeDrive;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.RobotMap;
+//import frc.robot.Robot;
 
 /**
  * Add your docs here.
@@ -28,9 +29,28 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public void arcadeDrive(Joystick stick) {
-    double move = -stick.getRawAxis(1);
-    double turn = stick.getRawAxis(4);
-    RobotMap.driveTrain.arcadeDrive(turn, move);
+    double move = stick.getRawAxis(1) * .99;
+    double turn = stick.getRawAxis(4) * .99;
+    RobotMap.driveTrain.arcadeDrive(move, turn);
+  }
+
+  public void drive(double m) {
+    /*double target;
+    double t;
+    synchronized (Robot.imgLock) {
+      target = Robot.target;
+    }
+    double turn = target - (Robot.IMG_WIDTH / 2);
+    if (turn > 10) {
+      t = .25;
+    } else if (turn < -10) {
+      t = -.25
+    }
+    RobotMap.driveTrain.arcadeDrive(m, t);*/
+  }
+
+  public void stopDriving() {
+    RobotMap.driveTrain.arcadeDrive(0, 0);
   }
 
 }

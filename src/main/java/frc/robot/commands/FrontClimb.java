@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class GrabCargoT extends Command {
-  public GrabCargoT() {
+public class FrontClimb extends Command {
+  public FrontClimb() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.gpSubsystem);
+    requires(Robot.climbSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class GrabCargoT extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.gpSubsystem.cargoIntakeIn();
+    Robot.climbSubsystem.frontClimbSolenoidOn();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +37,7 @@ public class GrabCargoT extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.gpSubsystem.cargoIntakeOff();
+    Robot.climbSubsystem.frontClimbSolenoidOff();
   }
 
   // Called when another command which requires one or more of the same

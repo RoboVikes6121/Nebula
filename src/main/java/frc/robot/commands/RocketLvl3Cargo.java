@@ -30,5 +30,10 @@ public class RocketLvl3Cargo extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
+
+    addSequential(new DriveA(.7, .2));
+    addSequential(new RaiseElevatorA(7));
+    addSequential(new ShootCargoA(.1));
+    addSequential(new LowerElevatorA(7));
   }
 }

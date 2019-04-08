@@ -9,12 +9,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
  * Add your docs here.
  */
-public class ClimbingSubsystem extends Subsystem {
+public class CargoIntakeSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -24,24 +23,19 @@ public class ClimbingSubsystem extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void frontClimbSolenoidOn() {
-    RobotMap.frontClimbSolenoid.set(true);
+  public void cargoIntakeIn() {
+      RobotMap.intakeMotor1.set(.5);
+      RobotMap.intakeMotor2.set(-.5);
   }
 
-  public void rearClimbSolenoidExtend() {
-    RobotMap.rearClimbSolenoid.set(DoubleSolenoid.Value.kForward);
+  public void cargoIntakeOut() {
+    RobotMap.intakeMotor1.set(-.5);
+    RobotMap.intakeMotor2.set(.5);
   }
 
-  public void rearClimbSolenoidRetract() {
-    RobotMap.rearClimbSolenoid.set(DoubleSolenoid.Value.kReverse);
-  }
-
-  public void frontClimbSolenoidOff() {
-    RobotMap.frontClimbSolenoid.set(false);
-  }
-
-  public void rearClimbSolenoidOff() {
-    RobotMap.rearClimbSolenoid.set(DoubleSolenoid.Value.kOff);
+  public void cargoIntakeOff() {
+    RobotMap.intakeMotor1.set(0);
+    RobotMap.intakeMotor2.set(0);
   }
 
 }

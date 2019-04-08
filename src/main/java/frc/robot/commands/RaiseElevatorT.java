@@ -14,7 +14,7 @@ public class RaiseElevatorT extends Command {
   public RaiseElevatorT() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.gpSubsystem);
+    requires(Robot.elevatorSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class RaiseElevatorT extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.gpSubsystem.elevatorUp();
+    Robot.elevatorSubsystem.elevatorUp();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +37,7 @@ public class RaiseElevatorT extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.gpSubsystem.elevatorOff();
+    Robot.elevatorSubsystem.elevatorOff();
   }
 
   // Called when another command which requires one or more of the same
