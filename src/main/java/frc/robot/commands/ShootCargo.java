@@ -10,14 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class StopSequence extends Command {
-  public StopSequence() {
+public class ShootCargo extends Command {
+  public ShootCargo() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.ciSubsystem);
-    requires(Robot.elevatorSubsystem);
-    requires(Robot.armsSubsystem);
-    requires(Robot.driveSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -28,11 +25,7 @@ public class StopSequence extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevatorSubsystem.elevatorOff();
-    Robot.ciSubsystem.cargoIntakeOff();
-    Robot.armsSubsystem.rotateMotorOff();
-    Robot.hiSubsystem.hatchSolenoidStop();
-    Robot.driveSubsystem.stopDriving();
+    Robot.ciSubsystem.cargoIntakeOut();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -44,11 +37,7 @@ public class StopSequence extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevatorSubsystem.elevatorOff();
     Robot.ciSubsystem.cargoIntakeOff();
-    Robot.armsSubsystem.rotateMotorOff();
-    Robot.hiSubsystem.hatchSolenoidStop();
-    Robot.driveSubsystem.stopDriving();
   }
 
   // Called when another command which requires one or more of the same

@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -67,6 +68,9 @@ public class RobotMap {
     hatchSolenoid = new Solenoid(0);
     frontClimbSolenoid = new Solenoid(1);
     rearClimbSolenoid = new DoubleSolenoid(2, 3);
+
+    rotationEncoder = new Counter(new DigitalInput(0));
+    rotationEncoder.setDistancePerPulse(.00001);
 
   }
 }
