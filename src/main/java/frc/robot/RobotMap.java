@@ -70,7 +70,6 @@ public class RobotMap {
     rearClimbSolenoid = new DoubleSolenoid(2, 3);
 
     rotationEncoder = new Counter(new DigitalInput(0));
-    rotationEncoder.setDistancePerPulse(.00001);
 
   }
 }

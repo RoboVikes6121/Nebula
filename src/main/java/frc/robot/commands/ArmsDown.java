@@ -11,10 +11,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class ArmsDown extends Command {
-  public ArmsDown() {
+
+  private double s;
+
+  public ArmsDown(double speed) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.armsSubsystem);
+    s = speed;
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +29,7 @@ public class ArmsDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.armsSubsystem.lowerArms();
+    Robot.armsSubsystem.lowerArms(s);
   }
 
   // Make this return true when this Command no longer needs to run execute()
