@@ -18,7 +18,6 @@ import frc.robot.commands.RaiseElevatorT;
 import frc.robot.commands.LowerElevatorT;
 import frc.robot.commands.FrontClimb;
 import frc.robot.commands.RearClimb;
-import frc.robot.commands.HatchPosition;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -65,7 +64,8 @@ public class OI {
   public static JoystickButton elevatorDownButton;
   public static JoystickButton frontClimbButton;
   public static JoystickButton rearClimbButton;
-  public static JoystickButton hatchEncoderButton;
+  public static JoystickButton armsRSButton;
+  public static JoystickButton armsLSButton;
 
   public OI() {
 
@@ -79,13 +79,16 @@ public class OI {
     rearClimbButton.whileHeld(new RearClimb());
 
     grabHatchFloorButton = new JoystickButton(operatorJoystick, 3);
-    grabHatchFloorButton.whileHeld(new ArmsDown());
+    grabHatchFloorButton.whileHeld(new ArmsDown(-.6));
 
     armsUpButton = new JoystickButton(operatorJoystick, 4);
-    armsUpButton.whileHeld(new ArmsUp());
+    armsUpButton.whileHeld(new ArmsUp(.6));
 
     elevatorUpButton = new JoystickButton(operatorJoystick, 5);
     elevatorUpButton.whileHeld(new RaiseElevatorT());
+
+    armsRSButton = new JoystickButton(operatorJoystick, 6);
+    armsRSButton.whileHeld(new ArmsUp(.3));
 
     shootCargoButton = new JoystickButton(operatorJoystick, 7);
     shootCargoButton.whileHeld(new ShootCargo());
@@ -93,11 +96,11 @@ public class OI {
     grabCargoButton = new JoystickButton(operatorJoystick, 8);
     grabCargoButton.whileHeld(new GrabCargo());
 
+    armsLSButton = new JoystickButton(operatorJoystick, 9);
+    armsLSButton.whileHeld(new ArmsDown(-.3));
+
     elevatorDownButton = new JoystickButton(operatorJoystick, 10);
     elevatorDownButton.whileHeld(new LowerElevatorT());
-
-    hatchEncoderButton = new JoystickButton(operatorJoystick, 11);
-    hatchEncoderButton.whenPressed(new HatchPosition());
 
     frontClimbButton = new JoystickButton(driverJoystick, 5);
     frontClimbButton.whileHeld(new FrontClimb());

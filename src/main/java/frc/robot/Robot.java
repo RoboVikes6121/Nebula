@@ -16,14 +16,13 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.CargoIntakeSubsystem;
 import frc.robot.subsystems.ClimbingSubsystem;
 //import edu.wpi.first.vision.VisionThread;
-//import edu.wpi.cscore.UsbCamera;
-//import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 //import org.opencv.core.Rect;
 //import org.opencv.imgproc.Imgproc;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.ArmsSubsystem;
 import frc.robot.subsystems.HatchIntakeSubsystem;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -41,9 +40,6 @@ public class Robot extends TimedRobot {
   public static ArmsSubsystem armsSubsystem = new ArmsSubsystem();
   public static HatchIntakeSubsystem hiSubsystem = new HatchIntakeSubsystem();
 /*
-  public static final int IMG_WIDTH = 320;
-  public static final int IMG_HEIGHT = 240;
-
   public VisionThread visionThread;
   public static double target = 160;
 
@@ -62,12 +58,16 @@ public class Robot extends TimedRobot {
     oi = new OI();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-/*
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
-    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-    camera.setFPS(60);
 
-    visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
+    camera.setResolution(160, 120);
+    camera.setFPS(30);
+
+    UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(1);
+    camera1.setResolution(160, 120);
+    camera1.setFPS(30);
+
+   /* visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
       if (!pipeline.filterContoursOutput().isEmpty()) {
         Rect r1 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
         synchronized (imgLock) {
@@ -102,9 +102,6 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     Scheduler.getInstance().run();
-    if (RobotMap.rearClimbSolenoid.get() == DoubleSolenoid.Value.kForward) {
-      RobotMap.rearClimbSolenoid.set(DoubleSolenoid.Value.kReverse);
-    }
   }
 
   /**
