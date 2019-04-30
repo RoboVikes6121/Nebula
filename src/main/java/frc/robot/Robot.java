@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.CargoIntakeSubsystem;
 import frc.robot.subsystems.ClimbingSubsystem;
-import edu.wpi.first.vision.VisionThread;
+//import edu.wpi.first.vision.VisionThread;
 //import edu.wpi.cscore.UsbCamera;
 //import edu.wpi.first.cameraserver.CameraServer;
 //import org.opencv.core.Rect;
@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
   public static ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
   public static ArmsSubsystem armsSubsystem = new ArmsSubsystem();
   public static HatchIntakeSubsystem hiSubsystem = new HatchIntakeSubsystem();
-
+/*
   public static final int IMG_WIDTH = 320;
   public static final int IMG_HEIGHT = 240;
 
@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
   public static double target = 160;
 
   public static final Object imgLock = new Object();
-
+*/
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -97,12 +97,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
-    RobotMap.rearClimbSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   @Override
   public void disabledPeriodic() {
     Scheduler.getInstance().run();
+    if (RobotMap.rearClimbSolenoid.get() == DoubleSolenoid.Value.kForward) {
+      RobotMap.rearClimbSolenoid.set(DoubleSolenoid.Value.kReverse);
+    }
   }
 
   /**
@@ -118,19 +120,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    //m_autonomousCommand = m_chooser.getSelected();
-
-    /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector",
-     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
-     */
-
-    // schedule the autonomous command (example)
-   /* if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
-    } */
   }
 
   /**
@@ -143,13 +132,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-   /* if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    } */
   }
 
   /**

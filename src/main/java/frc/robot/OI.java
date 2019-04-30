@@ -9,22 +9,16 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-//import frc.robot.commands.RocketLvl1Cargo;
-//import frc.robot.commands.RocketLvl2Cargo;
-//import frc.robot.commands.RocketLvl3Cargo;
-//import frc.robot.commands.RocketLvl1Hatch;
-//import frc.robot.commands.RocketLvl2Hatch;
-//import frc.robot.commands.RocketLvl3Hatch;
 import frc.robot.commands.GrabCargo;
-import frc.robot.commands.ShootCargoT;
-import frc.robot.commands.GrabHatchFloor;
+import frc.robot.commands.ShootCargo;
+import frc.robot.commands.ArmsDown;
 import frc.robot.commands.ArmsUp;
 import frc.robot.commands.EjectHatch;
 import frc.robot.commands.RaiseElevatorT;
 import frc.robot.commands.LowerElevatorT;
 import frc.robot.commands.FrontClimb;
 import frc.robot.commands.RearClimb;
-import frc.robot.commands.StopSequence;
+import frc.robot.commands.HatchPosition;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -62,25 +56,16 @@ public class OI {
   public static Joystick driverJoystick;
   public static Joystick operatorJoystick;
 
-  public static JoystickButton crl1Button;
-  public static JoystickButton crl2Button;
-  public static JoystickButton crl3Button;
-  public static JoystickButton hrl1Button;
-  public static JoystickButton hrl2Button;
-  public static JoystickButton hrl3Button;
   public static JoystickButton grabCargoButton;
   public static JoystickButton shootCargoButton;
   public static JoystickButton grabHatchFloorButton;
   public static JoystickButton armsUpButton;
-  public static JoystickButton deployArmsButton;
-  public static JoystickButton retractArmsButton;
   public static JoystickButton shootHatchButton;
-  public static JoystickButton operatorStopButton;
   public static JoystickButton elevatorUpButton;
   public static JoystickButton elevatorDownButton;
-  public static JoystickButton driverStopButton;
   public static JoystickButton frontClimbButton;
   public static JoystickButton rearClimbButton;
+  public static JoystickButton hatchEncoderButton;
 
   public OI() {
 
@@ -90,8 +75,11 @@ public class OI {
     shootHatchButton = new JoystickButton(operatorJoystick, 1);
     shootHatchButton.toggleWhenPressed(new EjectHatch());
 
+    rearClimbButton = new JoystickButton(operatorJoystick, 2);
+    rearClimbButton.whileHeld(new RearClimb());
+
     grabHatchFloorButton = new JoystickButton(operatorJoystick, 3);
-    grabHatchFloorButton.whileHeld(new GrabHatchFloor());
+    grabHatchFloorButton.whileHeld(new ArmsDown());
 
     armsUpButton = new JoystickButton(operatorJoystick, 4);
     armsUpButton.whileHeld(new ArmsUp());
@@ -100,7 +88,7 @@ public class OI {
     elevatorUpButton.whileHeld(new RaiseElevatorT());
 
     shootCargoButton = new JoystickButton(operatorJoystick, 7);
-    shootCargoButton.whileHeld(new ShootCargoT());
+    shootCargoButton.whileHeld(new ShootCargo());
 
     grabCargoButton = new JoystickButton(operatorJoystick, 8);
     grabCargoButton.whileHeld(new GrabCargo());
@@ -108,24 +96,8 @@ public class OI {
     elevatorDownButton = new JoystickButton(operatorJoystick, 10);
     elevatorDownButton.whileHeld(new LowerElevatorT());
 
-    rearClimbButton = new JoystickButton(operatorJoystick, 2);
-    rearClimbButton.whileHeld(new RearClimb());
-/*
-
-    crl2Button = new JoystickButton(operatorJoystick, 12);
-    crl2Button.whenPressed(new RocketLvl2Cargo());
-
-    crl3Button = new JoystickButton(operatorJoystick, 13);
-    crl3Button.whenPressed(new RocketLvl3Cargo());
-
-    hrl3Button = new JoystickButton(operatorJoystick, 14);
-    hrl3Button.whenPressed(new RocketLvl3Hatch());
-
-    hrl2Button = new JoystickButton(operatorJoystick, 15);
-    hrl2Button.whenPressed(new RocketLvl2Hatch());
-*/
-    driverStopButton = new JoystickButton(driverJoystick, 2);
-    driverStopButton.whileHeld(new StopSequence());
+    hatchEncoderButton = new JoystickButton(operatorJoystick, 11);
+    hatchEncoderButton.whenPressed(new HatchPosition());
 
     frontClimbButton = new JoystickButton(driverJoystick, 5);
     frontClimbButton.whileHeld(new FrontClimb());

@@ -28,20 +28,16 @@ public class ClimbingSubsystem extends Subsystem {
     RobotMap.frontClimbSolenoid.set(true);
   }
 
+  public void frontClimbSolenoidOff() {
+    RobotMap.frontClimbSolenoid.set(false);
+  }
+
   public void rearClimbSolenoidExtend() {
     RobotMap.rearClimbSolenoid.set(DoubleSolenoid.Value.kForward);
   }
 
   public void rearClimbSolenoidRetract() {
     RobotMap.rearClimbSolenoid.set(DoubleSolenoid.Value.kReverse);
-  }
-
-  public void frontClimbSolenoidOff() {
-    RobotMap.frontClimbSolenoid.set(false);
-  }
-
-  public void rearClimbSolenoidOff() {
-    RobotMap.rearClimbSolenoid.set(DoubleSolenoid.Value.kOff);
   }
 
 }
